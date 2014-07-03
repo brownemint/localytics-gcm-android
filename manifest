@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.1
+apiversion: 2
+description: A Titanium Module to interface with the Localytics SDK to allow logging of analytics and enabling push notifications
+author: Michael Browne
+license: Specify your license
+copyright: ProductWorld 2014
+
+
+# these should not be edited
+name: localytics
+moduleid: pw.localytics
+guid: 7c07d7ad-ada6-4527-98bf-97078a08cc3c
+platform: android
+minsdk: 3.2.3.GA

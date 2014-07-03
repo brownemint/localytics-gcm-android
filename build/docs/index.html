@@ -1,0 +1,90 @@
+<h1>Localytics Module</h1>
+<h2>Description</h2>
+<p>This module provides access to the Localytics SDK in Titanium.</p>
+<h2>Accessing the localytics Module</h2>
+<p>To access this module from JavaScript, you would do the following:</p>
+<pre><code>var localytics = require("pw.localytics");
+</code></pre>
+<p>The localytics variable is a reference to the Module object.  <br />
+</p>
+<p>Your tiapp.xml file should include the following:</p>
+<pre><code>&lt;android xmlns:android="http://schemas.android.com/apk/res/android"&gt; 
+    &lt;manifest android:versionCode="1" android:versionName="0.1"&gt;
+
+        &lt;permission android:name="&lt;YOUR PACKAGE NAME&gt;.permission.C2D_MESSAGE" android:protectionLevel="signature" /&gt;
+        &lt;uses-permission android:name="&lt;YOUR PACKAGE NAME&gt;.permission.C2D_MESSAGE" /&gt;
+
+        &lt;application&gt;
+
+            &lt;receiver android:name="com.localytics.android.PushReceiver" android:permission="com.google.android.c2dm.permission.SEND" &gt;
+                &lt;intent-filter&gt;
+                    &lt;action android:name="com.google.android.c2dm.intent.REGISTRATION" /&gt;
+                    &lt;action android:name="com.google.android.c2dm.intent.RECEIVE" /&gt;               
+                    &lt;category android:name="&lt;YOUR PACKAGE NAME&gt;" /&gt;
+                &lt;/intent-filter&gt;
+            &lt;/receiver&gt;
+
+            &lt;meta-data android:name="LOCALYTICS_APP_KEY" android:value="&lt;APP KEY&gt;"/&gt;
+
+        &lt;/application&gt;
+    &lt;/manifest&gt;
+&lt;/android&gt;
+</code></pre>
+<p>Where <br />
+</p>
+<ul>
+<li><code>&lt;YOUR PACKAGE NAME&gt;</code> is the app id already specified in tiapp.xml.</li>
+<li><code>&lt;APP KEY&gt;</code> is the application key from localytics</li>
+</ul>
+<h2>Reference</h2>
+<p>The following methods are available</p>
+<h3>initSession( String appKey )</h3>
+<p>Required before using any of the following methods. Used to setup the localytics session.</p>
+<ul>
+<li>appKey: The App Key associated with the Localytics Account.</li>
+</ul>
+<h3>pauseSession()</h3>
+<p>Pause a session when the app is backgrounded.</p>
+<h3>resumeSession()</h3>
+<p>Resume a session after the app is focused.</p>
+<h3>registerForPush( String projNumber )</h3>
+<p>Initialise a localytics session and register for push notifications. </p>
+<ul>
+<li>projNumber (optional): The project number obtained after registering for <a href="http://developer.android.com/google/gcm/gs.html">Google Cloud Messaging</a>.</li>
+</ul>
+<h3>logEvent( String eventName, Object paramDictionary )</h3>
+<p>Log an event on localytics.<br />
+</p>
+<ul>
+<li>eventName: Name of the event to log<br />
+</li>
+<li>paramDictionary (optional): A key/value dictionary of extra content to log.</li>
+</ul>
+<h3>logScreen ( String screenName )</h3>
+<p>Log a visit to a screen to create a screen map.<br />
+</p>
+<ul>
+<li>screenName: Name of the screen visited.</li>
+</ul>
+<h2>Usage</h2>
+<pre><code>// Require the Module
+var localytics = require("pw.localytics");
+
+// Init Session
+localytics.initSession();
+
+// Register for push
+localytics.registerForPush("670330094152");
+
+// Log a visit to the Home Screen
+localytics.logScreen("Home");
+
+// Log an App Started event with some additional information
+localytics.logEvent("App Started", {foo: "bar"});
+</code></pre>
+<h2>Author</h2>
+<p>Michael Browne<br />
+ProductWorld (2014)<br />
+m.browne@productworld.com</p>
+<h2>License</h2>
+<p>TODO: Enter your license/legal information here.</p>

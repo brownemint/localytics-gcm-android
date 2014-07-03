@@ -1,0 +1,18 @@
+%define lookup-function-name lookupGeneratedInit
+%define class-name LocalyticsBindings
+%{
+
+#include <string.h>
+#include <v8.h>
+#include <KrollBindings.h>
+
+#include "pw.localytics.LocalyticsModule.h"
+#include "pw.localytics.ExampleProxy.h"
+
+
+%}
+struct titanium::bindings::BindEntry;
+%%
+pw.localytics.LocalyticsModule, ::pw::localytics::LocalyticsModule::bindProxy, ::pw::localytics::LocalyticsModule::dispose
+pw.localytics.ExampleProxy, ::pw::localytics::localytics::ExampleProxy::bindProxy, ::pw::localytics::localytics::ExampleProxy::dispose
+%%
